@@ -303,8 +303,9 @@ This phase converts the logical Entity-Relationship model into a **physical Orac
 
 ---
 
-### 📋 Job Seeker Table  
-``CREATE TABLE "YVAN"."JOB_SEEKER" 
+### 📋 Job Seeker Table
+```sql
+CREATE TABLE "YVAN"."JOB_SEEKER" 
    (	"SEEKER_ID" NUMBER, 
 	"NAME" VARCHAR2(100 BYTE) NOT NULL ENABLE, 
 	"CONTACT" VARCHAR2(50 BYTE), 
@@ -323,13 +324,13 @@ This phase converts the logical Entity-Relationship model into a **physical Orac
   STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
   PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
   BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
-  TABLESPACE "SYSTEM" ;`` 
-
+  TABLESPACE "SYSTEM" ;
+```
 ---
 
 ### 📋 Training Program Table  
-
-``CREATE TABLE "YVAN"."TRAINING_PROGRAM" 
+```sql
+CREATE TABLE "YVAN"."TRAINING_PROGRAM" 
    (	"PROGRAM_ID" NUMBER, 
 	"NAME" VARCHAR2(100 BYTE) NOT NULL ENABLE, 
 	"DESCRIPTION" VARCHAR2(255 BYTE), 
@@ -346,26 +347,26 @@ This phase converts the logical Entity-Relationship model into a **physical Orac
   STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
   PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
   BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
-  TABLESPACE "SYSTEM" ;``
-
+  TABLESPACE "SYSTEM" ;
+```
 ---
 
 ### 📋 Enrollment Table  
-
-``CREATE TABLE Enrollment (
+```sql
+CREATE TABLE Enrollment (
     Enrollment_ID     NUMBER PRIMARY KEY,
     Seeker_ID         NUMBER,
     Program_ID        NUMBER,
     Completion_Status VARCHAR2(20) CHECK (Completion_Status IN ('Completed', 'Ongoing', 'Not Started')),
     FOREIGN KEY (Seeker_ID) REFERENCES Job_Seeker(Seeker_ID),
     FOREIGN KEY (Program_ID) REFERENCES Training_Program(Program_ID)
-);``
-
+);
+```
 ---
 
 ### 📋 Employer Table  
-
-``CREATE TABLE "YVAN"."EMPLOYER" 
+```sql
+CREATE TABLE "YVAN"."EMPLOYER" 
    (	"EMPLOYER_ID" NUMBER, 
 	"COMPANY_NAME" VARCHAR2(100 BYTE) NOT NULL ENABLE, 
 	"INDUSTRY" VARCHAR2(100 BYTE), 
@@ -382,14 +383,14 @@ This phase converts the logical Entity-Relationship model into a **physical Orac
   STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
   PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
   BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
-  TABLESPACE "SYSTEM" ;``
-  
+  TABLESPACE "SYSTEM" ;
+  ```
 
 ---
 
 ### 📋 Job Vacancy Table  
-
-`` CREATE TABLE "YVAN"."JOB_VACANCY" 
+```sql
+CREATE TABLE "YVAN"."JOB_VACANCY" 
    (	"JOB_ID" NUMBER, 
 	"EMPLOYER_ID" NUMBER, 
 	"JOB_TITLE" VARCHAR2(100 BYTE), 
@@ -410,13 +411,13 @@ This phase converts the logical Entity-Relationship model into a **physical Orac
   STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
   PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
   BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
-  TABLESPACE "SYSTEM" ; ``
-
+  TABLESPACE "SYSTEM" ;
+```
 ---
 
 ### 📋 Job Application Table  
-
-``CREATE TABLE "YVAN"."JOB_APPLICATION" 
+```sql
+CREATE TABLE "YVAN"."JOB_APPLICATION" 
    (	"APPLICATION_ID" NUMBER, 
 	"SEEKER_ID" NUMBER, 
 	"JOB_ID" NUMBER, 
@@ -438,8 +439,8 @@ This phase converts the logical Entity-Relationship model into a **physical Orac
   STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
   PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
   BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
-  TABLESPACE "SYSTEM" ;``
- 
+  TABLESPACE "SYSTEM" ;
+```
 
 ---
 
@@ -450,51 +451,52 @@ The following section includes sample records to simulate a real-world job match
 ---
 
 ### 📋 Job Seeker Table – Sample Data  
-
-``-- JOB SEEKERS
+```
+-- JOB SEEKERS
 INSERT INTO Job_Seeker VALUES (1, 'Alice Niyonsaba', '0781111111', 'Bachelor in IT', 'Junior', 'SQL, Python');
-INSERT INTO Job_Seeker VALUES (2, 'Eric Uwimana', '0782222222', 'Diploma in Business', 'Entry', 'Sales, Communication'); ``
-
+INSERT INTO Job_Seeker VALUES (2, 'Eric Uwimana', '0782222222', 'Diploma in Business', 'Entry', 'Sales, Communication'); 
+```
 ---
 
 ### 📋 Training Program Table – Sample Data  
-
-``-- TRAINING PROGRAMS
+```
+-- TRAINING PROGRAMS
 INSERT INTO Training_Program VALUES (101, 'SQL Basics', 'Intro to SQL', '4 weeks');
-INSERT INTO Training_Program VALUES (102, 'Job Prep', 'Resume & Interview Coaching', '2 weeks');``
- 
+INSERT INTO Training_Program VALUES (102, 'Job Prep', 'Resume & Interview Coaching', '2 weeks');
+``` 
 
 ---
 
 ### 📋 Enrollment Table – Sample Data  
-
-``-- ENROLLMENT
+```
+-- ENROLLMENT
 INSERT INTO Enrollment VALUES (1001, 1, 101, 'Completed');
-INSERT INTO Enrollment VALUES (1002, 2, 102, 'Ongoing');``
- 
-
+INSERT INTO Enrollment VALUES (1002, 2, 102, 'Ongoing');
+```
 ---
 
 ### 📋 Employer Table – Sample Data  
-
-``-- EMPLOYERS
+```
+-- EMPLOYERS
 INSERT INTO Employer VALUES (201, 'TechBridge Ltd.', 'IT Services', 'info@techbridge.com');
-INSERT INTO Employer VALUES (202, 'SmartSales Inc.', 'Retail', 'contact@smartsales.com');``
-
+INSERT INTO Employer VALUES (202, 'SmartSales Inc.', 'Retail', 'contact@smartsales.com');
+```
 ---
 
 ### 📋 Job Vacancy Table – Sample Data  
-
-``-- JOB VACANCIES
+```
+-- JOB VACANCIES
 INSERT INTO Job_Vacancy VALUES (301, 201, 'Junior Developer', 'SQL, Python', 'Open');
-INSERT INTO Job_Vacancy VALUES (302, 202, 'Sales Associate', 'Sales, Communication', 'Open');``
+INSERT INTO Job_Vacancy VALUES (302, 202, 'Sales Associate', 'Sales, Communication', 'Open');
+```
 
 ---
 ### 📋 Job Application Table – Sample Data  
-
-``-- JOB APPLICATIONS
+```
+-- JOB APPLICATIONS
 INSERT INTO Job_Application VALUES (401, 1, 301, 'Pending');
-INSERT INTO Job_Application VALUES (402, 2, 302, 'Pending');``
+INSERT INTO Job_Application VALUES (402, 2, 302, 'Pending');
+```
 
 ---
 
