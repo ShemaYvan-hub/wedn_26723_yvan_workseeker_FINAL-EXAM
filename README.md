@@ -241,8 +241,8 @@ This phase focuses on creating a **Pluggable Database (PDB)** and converting the
 The pluggable database was created following the standard naming convention:
 
 - **Database Name:** `wedn_26723_shema_workseeker_db`  
-- **Username:** `shema`  
-- **Password:** `shema`  
+- **Username:** `yvan`  
+- **Password:** `yvan`  
 
 ---
 
@@ -250,7 +250,7 @@ The pluggable database was created following the standard naming convention:
 
 1.Created a pluggable database
 
-![2222](https://github.com/user-attachments/assets/52c0b72a-95b3-4b30-b935-2978bfd24dfb)
+![image](https://github.com/user-attachments/assets/08554f3e-7e49-4904-89d9-e4573dd1f989)
 
 2. Opened the newly created PDB  
 
@@ -276,7 +276,8 @@ Oracle Enterprise Manager (OEM) was used to verify:
 - ✅ The PDB was successfully created and opened  
 - ✅ The user `yvan` was created and granted full privileges  
 - ✅ Sessions and activity could be monitored  
-- ✅ Schema-level structure and table space were active  
+- ✅ Schema-level structure and table space were active
+  
 ![image](https://github.com/user-attachments/assets/22a2be02-0d5b-4c64-9f60-0610896ed47f)
 
 ---
