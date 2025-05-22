@@ -226,6 +226,71 @@ The logical model is supported by a visual **Entity-Relationship Diagram (ERD)**
 
 ![111111](https://github.com/user-attachments/assets/3d3aa207-9978-4421-a884-85e86ee19473)
 
+# 🌀 Phase IV  
+## Pluggable Database Creation – PDB Setup    
+---
+
+## 📠 What This Phase Covers  
+
+This phase focuses on creating a **Pluggable Database (PDB)** and converting the logical model into a physical database structure. It ensures that all tables, relationships, and constraints are implemented to meet the requirements of the Work Seeker system.
+
+---
+
+## 🔨 Database Creation  
+
+The pluggable database was created following the standard naming convention:
+
+- **Database Name:** `wedn_26723_shema_workseeker_db`  
+- **Username:** `shema`  
+- **Password:** `shema`  
+
+---
+
+## ✅ Steps Executed in SQL Command Prompt  
+
+1.Created a pluggable database
+
+![2222](https://github.com/user-attachments/assets/52c0b72a-95b3-4b30-b935-2978bfd24dfb)
+
+2. Opened the newly created PDB  
+
+![image](https://github.com/user-attachments/assets/5b8b7a4e-457e-4bce-9c2f-edf5e03de9a4)
+
+3. Saved the PDB to retain its open state
+   
+ ![image](https://github.com/user-attachments/assets/bd68f40c-4a4e-4d86-8655-1ae30422516f)
+  
+4. Set the session container to the new PDB
+   
+   ![image](https://github.com/user-attachments/assets/f0b55c02-be7b-4d2e-b4b0-fede4dfaa476)
+
+5. Created a user and granted all necessary privileges  
+
+![image](https://github.com/user-attachments/assets/36ef39a6-0e45-44fe-868c-75d635bd419f)
+
+---
+
+## ⚖️ Oracle Enterprise Manager (OEM)  
+
+Oracle Enterprise Manager (OEM) was used to verify:
+- ✅ The PDB was successfully created and opened  
+- ✅ The user `yvan` was created and granted full privileges  
+- ✅ Sessions and activity could be monitored  
+- ✅ Schema-level structure and table space were active  
+![image](https://github.com/user-attachments/assets/22a2be02-0d5b-4c64-9f60-0610896ed47f)
+
+---
+
+## 🔭 Conclusion About This Phase  
+
+This phase successfully established the **pluggable database** for the Work Seeker system and validated its functionality via SQL and OEM tools.
+
+The system is now ready to support:
+- Table creation  
+- Transactional logic  
+- Procedure and function development  
+- Full PL/SQL implementation in upcoming phases  
+
 
 
 
