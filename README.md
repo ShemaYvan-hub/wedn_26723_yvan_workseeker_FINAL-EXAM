@@ -159,10 +159,6 @@ This process improves efficiency by removing manual bottlenecks in employment sy
 
 
 # ✅ Phase III – Logical Model Design  
-👤 Student: Shema Yvan  
-🆔 Student ID: [Insert Your Student ID]  
-📚 Project Title: Work Seeker Platform – Job Matching & Training System
-
 ---
 
 ## 🔢 1. Entity-Relationship (ER) Model
