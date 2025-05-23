@@ -131,7 +131,7 @@ The visual diagram uses:
 - **Rectangles** for tasks
 - **Diamonds** for decision nodes
 - **Arrows** to show flow
--
+
 ![1b75e188-0a25-44e3-876e-eee6ea4ffdc9](https://github.com/user-attachments/assets/4f779ad5-fd2a-4876-849c-9011fdf25d95)
 
 
@@ -513,6 +513,228 @@ Sample data was inserted to enable testing and to simulate user interactions wit
 The database is now ready for PL/SQL programming in upcoming phases.
 
 
+# 🌀 Phase VI  
+## 🔄 *Database Interaction and Transactions*  
+
+👤 Student: Shema Yvan  
+🆔 Student ID: 26642  
+📚 Project Title: Work Seeker Platform – Job Matching & Training System  
+
+---
+
+## 1. Database Operations  
+
+### ⚓ *DDL (Data Definition Language)*  
+
+Create essential tables for the system.  
+Here is an example of creating the `Job_Application` table:
+
+```sql
+CREATE TABLE Job_Application (
+    Application_ID NUMBER PRIMARY KEY,
+    Seeker_ID NUMBER NOT NULL,
+    Job_ID NUMBER NOT NULL,
+    Status VARCHAR2(20) CHECK (Status IN ('Pending', 'Accepted', 'Rejected')),
+    FOREIGN KEY (Seeker_ID) REFERENCES Job_Seeker(Seeker_ID) ON DELETE CASCADE,
+    FOREIGN KEY (Job_ID) REFERENCES Job_Vacancy(Job_ID) ON DELETE CASCADE
+);
+```
+![image](https://github.com/user-attachments/assets/10c83db7-4f6e-421d-8936-b40f06460742)
+
+
+### ❄️ *DML (Data Manipulation Language)*
+
+Insert, update, and delete sample data:
+
+Here is an example of inserting data as we did it in the above queries
+![image](https://github.com/user-attachments/assets/51186bd7-2ce0-4162-b112-da206d46b3ab)
+
+
+Updating data in my Database
+
+sql
+
+-- Update
+```
+UPDATE employer SET company_name = 'Andela Ltd' WHERE employer_id = 1;
+```
+
+
+![image](https://github.com/user-attachments/assets/9f69399b-3366-4438-a27c-f2de8431f621)
+
+
+Here is the table which shows the updated user after using the query
+
+![image](https://github.com/user-attachments/assets/fa334e90-cb22-4d73-b677-e3e3f5d6f1a1)
+
+
+Deleting data in database 
+
+```
+DELETE FROM enrollment 
+WHERE enrollment_id = 1002;
+```
+
+![image](https://github.com/user-attachments/assets/07d9f46b-fd54-48e9-a184-370eb50facaf)
+
+Here is an example of deleted data in enrollment table
+
+![image](https://github.com/user-attachments/assets/7359dd46-84e4-44cc-96cc-bbc7726bc537)
+
+SIKEEEE NO DATA LEFT
+
+2. Task Requirements
+
+### 🛡️ *Simple Problem Statement*
+
+Problem: Identify job seekers who apply to the most job vacancies in order to prioritize follow-up or provide extra support.
+
+Use of Windows Functions Example:
+
+```sql
+SELECT 
+    Seeker_ID,
+    COUNT(Job_ID) AS Total_Applications,
+    RANK() OVER (ORDER BY COUNT(Job_ID) DESC) AS Application_Rank
+FROM Job_Application
+GROUP BY Seeker_ID;
+```
+![image](https://github.com/user-attachments/assets/7f58ed96-97da-4502-b788-2523fa12eb38)
+
+
+3. Procedures and Functions
+   
+### 🔐 *Procedure to Fetch Transactions by User*
+
+```sql
+CREATE OR REPLACE PROCEDURE fetch_applications_by_seeker (
+    p_seeker_id IN NUMBER
+) AS
+BEGIN
+    FOR rec IN (
+        SELECT * FROM Job_Application WHERE Seeker_ID = p_seeker_id
+    ) LOOP
+        DBMS_OUTPUT.PUT_LINE('Application ID: ' || rec.Application_ID || ', Status: ' || rec.Status);
+    END LOOP;
+EXCEPTION
+    WHEN OTHERS THEN
+        DBMS_OUTPUT.PUT_LINE('Error: ' || SQLERRM);
+END;
+```
+![image](https://github.com/user-attachments/assets/e7eef296-d8d1-472b-a589-c7a6024a0db4)
+
+
+## *Cursors are used implicitly in this section:*
+
+### *🔍 Explanation (Implicit Cursor)
+Uses FOR rec IN (SELECT...) to implicitly open, fetch, and close the cursor.
+
+Oracle handles cursor lifecycle internally.
+
+rec refers to each row returned.
+
+
+*💡 If you want to use an explicit cursor, here's how you would rewrite it:*
+
+```sql
+CREATE OR REPLACE PROCEDURE fetch_applications_by_seeker_explicit (
+    p_seeker_id IN NUMBER
+) AS
+    CURSOR app_cursor IS
+        SELECT * FROM Job_Application WHERE Seeker_ID = p_seeker_id;
+    app_row app_cursor%ROWTYPE;
+BEGIN
+    OPEN app_cursor;
+    LOOP
+        FETCH app_cursor INTO app_row;
+        EXIT WHEN app_cursor%NOTFOUND;
+        DBMS_OUTPUT.PUT_LINE('Application: ' || app_row.Application_ID || ', Status: ' || app_row.Status);
+    END LOOP;
+    CLOSE app_cursor;
+EXCEPTION
+    WHEN OTHERS THEN
+        DBMS_OUTPUT.PUT_LINE('Error: ' || SQLERRM);
+END;
+```
+
+
+
+
+### ♻️ *Function to Get Total Transaction Amount* 
+
+```sql
+CREATE OR REPLACE FUNCTION get_total_applications (
+    p_seeker_id IN NUMBER
+) RETURN NUMBER IS
+    total NUMBER := 0;
+BEGIN
+    SELECT COUNT(*) INTO total FROM Job_Application WHERE Seeker_ID = p_seeker_id;
+    RETURN total;
+EXCEPTION
+    WHEN NO_DATA_FOUND THEN RETURN 0;
+    WHEN OTHERS THEN RETURN -1;
+END;
+```
+
+
+![image](https://github.com/user-attachments/assets/f8833d9f-9014-41f9-a6d4-6532aac2f16a)
+
+4. *Testing*
+   
+Run tests with sample data:
+```
+EXEC fetch_applications_by_seeker(1);
+SELECT get_total_applications(1) AS Total_Apps FROM dual;
+```
+
+
+![image](https://github.com/user-attachments/assets/e19a39e6-60fe-4f81-b4f4-39087a33ac97)
+
+
+
+5. Packages
+
+### 🚧 *Create Package Specification*
+
+🎡 Create Package Body
+
+```sql
+CREATE OR REPLACE PACKAGE seeker_pkg IS
+  PROCEDURE fetch_applications_by_seeker(p_seeker_id NUMBER);
+END seeker_pkg;
+```
+![image](https://github.com/user-attachments/assets/502c7705-6935-4c5e-8688-3fd50bb4a7fa)
+
+🎡 Package Body
+
+```sql
+CREATE OR REPLACE PACKAGE BODY seeker_pkg IS
+  PROCEDURE fetch_applications_by_seeker(p_seeker_id NUMBER) IS
+  BEGIN
+    FOR rec IN (
+        SELECT Application_ID, Job_ID, Status
+        FROM Job_Application
+        WHERE Seeker_ID = p_seeker_id
+    ) LOOP
+        DBMS_OUTPUT.PUT_LINE('Application ID: ' || rec.Application_ID ||
+                             ', Job ID: ' || rec.Job_ID ||
+                             ', Status: ' || rec.Status);
+    END LOOP;
+  END;
+END seeker_pkg;
+
+```
+![image](https://github.com/user-attachments/assets/bcb0f68a-9946-48da-8e0f-9a1f183b686d)
+
+▶️ Calling the Procedure
+
+```sql
+BEGIN
+  seeker_pkg.fetch_applications_by_seeker(1);
+END;
+```
+
+![image](https://github.com/user-attachments/assets/8e984198-5db5-47ee-b505-04ea5eca9809)
 
 
 
