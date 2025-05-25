@@ -498,6 +498,15 @@ INSERT INTO Job_Vacancy VALUES (302, 202, 'Sales Associate', 'Sales, Communicati
 INSERT INTO Job_Application VALUES (401, 1, 301, 'Pending');
 INSERT INTO Job_Application VALUES (402, 2, 302, 'Pending');
 ```
+---
+## SCREENSHOTS
+
+![image](https://github.com/user-attachments/assets/471fe438-2a46-4297-9cc4-1444e855ebb0)
+
+![image](https://github.com/user-attachments/assets/596e1025-e848-486e-93f1-cac6f8bc8a97)
+
+![image](https://github.com/user-attachments/assets/785a59d3-bcb4-4f40-9951-b38d89f4da99)
+
 
 ---
 
