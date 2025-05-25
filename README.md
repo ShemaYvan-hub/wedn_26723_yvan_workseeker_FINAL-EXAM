@@ -224,7 +224,8 @@ The logical model is supported by a visual **Entity-Relationship Diagram (ERD)**
 - Relationships (1:M, M:N)
 - Primary and foreign keys
 
-![111111](https://github.com/user-attachments/assets/3d3aa207-9978-4421-a884-85e86ee19473)
+![Phase3_ER_Diagram_Labeled](https://github.com/user-attachments/assets/15b93c8d-ae70-4bcc-ae70-45d8d553f955)
+
 
 # 🌀 Phase IV  
 ## Pluggable Database Creation – PDB Setup    
