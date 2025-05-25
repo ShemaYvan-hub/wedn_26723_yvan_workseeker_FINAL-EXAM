@@ -241,7 +241,7 @@ This phase focuses on creating a **Pluggable Database (PDB)** and converting the
 
 The pluggable database was created following the standard naming convention:
 
-- **Database Name:** `wedn_26723_shema_workseeker_db`  
+- **Database Name:** `wedn_26723_yvan_workseeker_db`  
 - **Username:** `yvan`  
 - **Password:** `yvan`  
 
