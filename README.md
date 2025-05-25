@@ -526,10 +526,6 @@ The database is now ready for PL/SQL programming in upcoming phases.
 # 🌀 Phase VI  
 ## 🔄 *Database Interaction and Transactions*  
 
-👤 Student: Shema Yvan  
-🆔 Student ID: 26642  
-📚 Project Title: Work Seeker Platform – Job Matching & Training System  
-
 ---
 
 ## 1. Database Operations  
@@ -561,8 +557,6 @@ Here is an example of inserting data as we did it in the above queries
 
 
 Updating data in my Database
-
-sql
 
 -- Update
 ```
